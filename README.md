@@ -91,7 +91,7 @@ func Handle(req []byte) string {
 }
 ```
 
-3. Create vendor directory: `go mod vendor`
+3. Create vendor directory: `go mod vendor` (OpenFaaS use vendor to manage dependency)
 4. Build and deploy this new function: `faas-cli up -f go-fn.yml --gateway http://$(minikube ip):31112`
 
 ## How to use this example repository
