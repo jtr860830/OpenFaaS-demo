@@ -2,7 +2,7 @@
 
 ## Set up environment on MacOS
 
-- `brew install docker-machine-driver-hyperkit faas-cli kubernetes-cli kubernetes-helm`
+- `brew install go docker-machine-driver-hyperkit faas-cli kubernetes-cli kubernetes-helm`
 - `brew cask install minikube docker`
 
 > docker-machine-driver-hyperkit can replace by virtualbox. Use `brew cask install virtualbox` to install it.
@@ -67,6 +67,32 @@ Then you can see this function in the dashboard. Invoke it by using dashboard UI
 - `echo test | faas-cli invoke go-fn --gateway http://$(minikube ip):31112`
 
 > Build, push and deploy can use just one command to finish these step `faas-cli up -f go-fn.yml --gateway http://$(minikube ip):31112`
+
+## Develop with third-party package using go module (go 1.11+)
+
+1. Init go module in go-fn directory: `go mod init PROJECT_NAME`
+2. Import some third-party package in handler.go
+
+example:
+```go
+package function
+
+import (
+	"fmt"
+
+	"gopkg.in/loremipsum.v1"
+)
+
+// Handle a serverless request
+func Handle(req []byte) string {
+	text := loremipsum.New().Words(10)
+
+	return fmt.Sprintf("Request body: %s\nResponse: %s", string(req), string(text))
+}
+```
+
+3. Create vendor directory: `go mod vendor`
+4. Build and deploy this new function: `faas-cli up -f go-fn.yml --gateway http://$(minikube ip):31112`
 
 ## Reference
 
