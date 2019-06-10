@@ -98,8 +98,9 @@ func Handle(req []byte) string {
 
 1. Deploy OpenFaaS
 2. Clone this repository
-3. Modify yml file's Docker Hub username in image tag
-4. Deploy function 
+3. Create vendor in go-fn directory
+4. Modify yml file's Docker Hub username in image tag
+5. Deploy function 
 
 ## Reference
 
