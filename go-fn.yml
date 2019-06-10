@@ -1,0 +1,9 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://192.168.64.3:31112
+functions:
+  go-fn:
+    lang: go
+    handler: ./go-fn
+    image: jtr860830/go-fn:latest
