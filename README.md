@@ -68,7 +68,7 @@ Then you can see this function in the dashboard. Invoke it by using dashboard UI
 
 > Build, push and deploy can use just one command to finish these step `faas-cli up -f go-fn.yml --gateway http://$(minikube ip):31112`
 
-## Develop with third-party package using go module (go 1.11+)
+## Develop with third-party package using Go module (Go 1.11+)
 
 1. Init go module in go-fn directory: `go mod init PROJECT_NAME`
 2. Import some third-party package in handler.go
@@ -93,6 +93,13 @@ func Handle(req []byte) string {
 
 3. Create vendor directory: `go mod vendor`
 4. Build and deploy this new function: `faas-cli up -f go-fn.yml --gateway http://$(minikube ip):31112`
+
+## How to use this example repository
+
+1. Deploy OpenFaaS
+2. Clone this repository
+3. Modify yml file's Docker Hub username in image tag
+4. Deploy function 
 
 ## Reference
 
